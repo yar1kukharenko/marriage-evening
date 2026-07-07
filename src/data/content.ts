@@ -1,6 +1,9 @@
 // Весь текст приглашения собран здесь, чтобы менять формулировки
 // и ссылки (карта, RSVP) без правки вёрстки.
 
+const asset = (path: string) =>
+  `${import.meta.env.BASE_URL}${path.replace(/^\//, '')}`;
+
 export type ScheduleItem = {
   time: string;
   label: string;
@@ -22,42 +25,42 @@ export type Photo = {
 
 export const photos = {
   hero: {
-    src: "/photos/couple-hero.jpg",
-    alt: "Пара на природе в тёплом вечернем свете",
+    src: asset('/photos/couple-hero.jpg'),
+    alt: 'Пара на природе в тёплом вечернем свете',
   },
   collage: [
-    { src: "/photos/detail-rings.jpg", alt: "Обручальные кольца на льне" },
-    { src: "/photos/nature-garden.jpg", alt: "Сад в тёплом вечернем свете" },
+    { src: asset('/photos/detail-rings.jpg'), alt: 'Обручальные кольца на льне' },
+    { src: asset('/photos/nature-garden.jpg'), alt: 'Сад в тёплом вечернем свете' },
     {
-      src: "/photos/table-setting.jpg",
-      alt: "Банкетный стол с натуральным декором",
+      src: asset('/photos/table-setting.jpg'),
+      alt: 'Банкетный стол с натуральным декором',
     },
   ],
   venue: {
-    src: "/photos/venue-countryside.jpg",
-    alt: "Загородный клуб в окружении сада",
+    src: asset('/photos/venue-countryside.jpg'),
+    alt: 'Загородный клуб в окружении сада',
   },
   divider: {
-    src: "/photos/evening-atmosphere.jpg",
-    alt: "Тёплый вечерний пейзаж за городом",
+    src: asset('/photos/evening-atmosphere.jpg'),
+    alt: 'Тёплый вечерний пейзаж за городом',
   },
   schedule: {
-    src: "/photos/nature-garden.jpg",
-    alt: "Сад в тёплом вечернем свете",
+    src: asset('/photos/nature-garden.jpg'),
+    alt: 'Сад в тёплом вечернем свете',
   },
   dressCode: [
     {
-      src: "/illustrations/outfit-warm-palette.png",
-      alt: "Иллюстрация тёплой природной палитры",
+      src: asset('/illustrations/outfit-warm-palette.png'),
+      alt: 'Иллюстрация тёплой природной палитры',
     },
     {
-      src: "/illustrations/table-natural-decor.png",
-      alt: "Иллюстрация банкетного стола с натуральным декором",
+      src: asset('/illustrations/table-natural-decor.png'),
+      alt: 'Иллюстрация банкетного стола с натуральным декором',
     },
   ],
   wishes: {
-    src: "/illustrations/couple-garden-walk.png",
-    alt: "Иллюстрация пары на прогулке по садовой аллее",
+    src: asset('/illustrations/couple-garden-walk.png'),
+    alt: 'Иллюстрация пары на прогулке по садовой аллее',
   },
 } as const;
 
