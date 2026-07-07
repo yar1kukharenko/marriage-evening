@@ -1,0 +1,67 @@
+rules_version = '2';
+
+// ===============================================================
+// Assumed Data Model
+// ===============================================================
+//
+// Collection: rsvps
+// Document ID: auto-generated
+// Fields:
+//   - fullName: string (required, 2-100 chars) — имя и фамилия гостя
+//   - attending: bool (required) — будет ли на праздничном вечере
+//   - transfer: string | null (required if attending) — 'bus' | 'self' | null
+//   - phone: string | null (optional, max 30) — телефон для связи
+//   - comment: string | null (optional, max 500) — комментарий
+//   - createdAt: timestamp (required, immutable) — время отправки
+//
+// Access: гости могут только создавать записи; чтение — через Firebase Console
+//
+// ===============================================================
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isValidTransfer(value) {
+      return value == null || value in ['bus', 'self'];
+    }
+
+    function isValidOptionalString(field, maxLen) {
+      return !(field in request.resource.data) ||
+        request.resource.data[field] == null ||
+        (request.resource.data[field] is string &&
+         request.resource.data[field].size() <= maxLen);
+    }
+
+    function isValidRsvp() {
+      let data = request.resource.data;
+
+      return data.keys().hasOnly([
+          'fullName',
+          'attending',
+          'transfer',
+          'phone',
+          'comment',
+          'createdAt',
+        ]) &&
+        data.fullName is string &&
+        data.fullName.size() >= 2 &&
+        data.fullName.size() <= 100 &&
+        data.attending is bool &&
+        isValidTransfer(data.transfer) &&
+        isValidOptionalString('phone', 30) &&
+        isValidOptionalString('comment', 500) &&
+        data.createdAt is timestamp &&
+        (
+          (data.attending == true &&
+           data.transfer in ['bus', 'self']) ||
+          (data.attending == false &&
+           data.transfer == null)
+        );
+    }
+
+    match /rsvps/{rsvpId} {
+      allow create: if isValidRsvp();
+      allow read, update, delete: if false;
+    }
+  }
+}
