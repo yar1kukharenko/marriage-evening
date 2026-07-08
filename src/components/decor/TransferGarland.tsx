@@ -1,4 +1,4 @@
-import transferGarland from "../../assets/decor/transfer-garland.png";
+import transferGarland from "../../assets/decor/transfer-garland-640.webp";
 
 type TransferGarlandProps = {
   className?: string;

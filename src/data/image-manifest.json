@@ -1,0 +1,270 @@
+{
+  "illustrations/couple-garden-walk-og": {
+    "widths": [
+      640,
+      1024
+    ],
+    "defaultWidth": 768,
+    "width": 1024,
+    "height": 683
+  },
+  "photos/couple-hero": {
+    "widths": [
+      480,
+      768,
+      1024
+    ],
+    "defaultWidth": 768,
+    "width": 768,
+    "height": 1152
+  },
+  "photos/couple-walk": {
+    "widths": [
+      480,
+      768,
+      1024
+    ],
+    "defaultWidth": 768,
+    "width": 768,
+    "height": 1152
+  },
+  "photos/detail-rings": {
+    "widths": [
+      480,
+      768,
+      1024
+    ],
+    "defaultWidth": 768,
+    "width": 768,
+    "height": 768
+  },
+  "photos/evening-atmosphere": {
+    "widths": [
+      480,
+      768,
+      1024
+    ],
+    "defaultWidth": 768,
+    "width": 768,
+    "height": 512
+  },
+  "photos/nature-garden": {
+    "widths": [
+      480,
+      768,
+      1024
+    ],
+    "defaultWidth": 768,
+    "width": 768,
+    "height": 1152
+  },
+  "photos/outfit-reference": {
+    "widths": [
+      480,
+      768,
+      1024
+    ],
+    "defaultWidth": 768,
+    "width": 768,
+    "height": 1152
+  },
+  "photos/table-setting": {
+    "widths": [
+      480,
+      768,
+      1024
+    ],
+    "defaultWidth": 768,
+    "width": 768,
+    "height": 768
+  },
+  "photos/venue-countryside": {
+    "widths": [
+      480,
+      768,
+      1024
+    ],
+    "defaultWidth": 768,
+    "width": 768,
+    "height": 512
+  },
+  "illustrations/couple-garden-walk": {
+    "widths": [
+      640,
+      1024
+    ],
+    "defaultWidth": 768,
+    "width": 1024,
+    "height": 683
+  },
+  "illustrations/outfit-warm-palette": {
+    "widths": [
+      640,
+      1024
+    ],
+    "defaultWidth": 768,
+    "width": 1024,
+    "height": 1536
+  },
+  "illustrations/table-natural-decor": {
+    "widths": [
+      640,
+      1024
+    ],
+    "defaultWidth": 768,
+    "width": 1024,
+    "height": 1536
+  },
+  "examples/man_example_1": {
+    "widths": [
+      256
+    ],
+    "defaultWidth": 256,
+    "width": 256,
+    "height": 450
+  },
+  "examples/man_example_2": {
+    "widths": [
+      256
+    ],
+    "defaultWidth": 256,
+    "width": 256,
+    "height": 450
+  },
+  "examples/man_example_3": {
+    "widths": [
+      256
+    ],
+    "defaultWidth": 256,
+    "width": 256,
+    "height": 450
+  },
+  "examples/man_example_4": {
+    "widths": [
+      256
+    ],
+    "defaultWidth": 256,
+    "width": 256,
+    "height": 450
+  },
+  "examples/man_example_5": {
+    "widths": [
+      256
+    ],
+    "defaultWidth": 256,
+    "width": 256,
+    "height": 450
+  },
+  "examples/stop_1": {
+    "widths": [
+      256
+    ],
+    "defaultWidth": 256,
+    "width": 256,
+    "height": 304
+  },
+  "examples/stop_2": {
+    "widths": [
+      256
+    ],
+    "defaultWidth": 256,
+    "width": 256,
+    "height": 304
+  },
+  "examples/stop_3": {
+    "widths": [
+      256
+    ],
+    "defaultWidth": 256,
+    "width": 256,
+    "height": 304
+  },
+  "examples/stop_4": {
+    "widths": [
+      256
+    ],
+    "defaultWidth": 256,
+    "width": 256,
+    "height": 304
+  },
+  "examples/stop_5": {
+    "widths": [
+      256
+    ],
+    "defaultWidth": 256,
+    "width": 256,
+    "height": 304
+  },
+  "examples/texture_1": {
+    "widths": [
+      256
+    ],
+    "defaultWidth": 256,
+    "width": 256,
+    "height": 308
+  },
+  "examples/texture_2": {
+    "widths": [
+      256
+    ],
+    "defaultWidth": 256,
+    "width": 256,
+    "height": 308
+  },
+  "examples/texture_3": {
+    "widths": [
+      256
+    ],
+    "defaultWidth": 256,
+    "width": 256,
+    "height": 308
+  },
+  "examples/texture_4": {
+    "widths": [
+      256
+    ],
+    "defaultWidth": 256,
+    "width": 256,
+    "height": 308
+  },
+  "examples/woman_example_1": {
+    "widths": [
+      256
+    ],
+    "defaultWidth": 256,
+    "width": 256,
+    "height": 450
+  },
+  "examples/woman_example_2": {
+    "widths": [
+      256
+    ],
+    "defaultWidth": 256,
+    "width": 256,
+    "height": 450
+  },
+  "examples/woman_example_3": {
+    "widths": [
+      256
+    ],
+    "defaultWidth": 256,
+    "width": 256,
+    "height": 450
+  },
+  "examples/woman_example_4": {
+    "widths": [
+      256
+    ],
+    "defaultWidth": 256,
+    "width": 256,
+    "height": 450
+  },
+  "examples/woman_example_5": {
+    "widths": [
+      256
+    ],
+    "defaultWidth": 256,
+    "width": 256,
+    "height": 450
+  }
+}

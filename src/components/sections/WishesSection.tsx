@@ -8,8 +8,7 @@ export function WishesSection() {
     <Section id="wishes" compact className="text-center">
       <VintageBorder>
         <VintagePhoto
-          src={photos.wishes.src}
-          alt={photos.wishes.alt}
+          {...photos.wishes}
           aspect="landscape"
           variant="illustration"
           className="mb-6"

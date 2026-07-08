@@ -1,5 +1,5 @@
 import type { ReactNode } from 'react'
-import cornerFlourish from '../../assets/decor/corner-flourish.png'
+import cornerFlourish from '../../assets/decor/corner-flourish-640.webp'
 
 const CornerOrnament = ({ className = '' }: { className?: string }) => (
   <img

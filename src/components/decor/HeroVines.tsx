@@ -1,4 +1,4 @@
-import vineBranch from "../../assets/decor/vine-branch.png";
+import vineBranch from "../../assets/decor/vine-branch-600.webp";
 
 const vineStyle = { height: "min(125vh, 920px)" };
 

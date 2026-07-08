@@ -17,7 +17,7 @@ function App() {
       {/* <PhotoCollage photos={[...photos.collage]} /> */}
       <VenueSection />
       <ScheduleSection />
-      {/* <PhotoDivider src={photos.divider.src} alt={photos.divider.alt} /> */}
+      {/* <PhotoDivider {...photos.divider} /> */}
       <TransferSection />
       <DressCodeSection />
       <WishesSection />

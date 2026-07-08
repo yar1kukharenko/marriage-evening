@@ -9,8 +9,7 @@ export function VenueSection() {
     <Section id="venue" compact className="text-center">
       <VintageBorder>
         <VintagePhoto
-          src={photos.venue.src}
-          alt={photos.venue.alt}
+          {...photos.venue}
           aspect="landscape"
           className="mb-6"
         />

@@ -1,4 +1,4 @@
-import topGarland from '../../assets/decor/top-garland.png'
+import topGarland from '../../assets/decor/top-garland-640.webp'
 
 type ArchProps = {
   className?: string

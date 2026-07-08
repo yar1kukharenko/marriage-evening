@@ -1,12 +1,12 @@
+import type { ResponsiveImageData } from "../../lib/images";
 import { VintageBorder } from "../decor/VintageBorder";
+import { ResponsiveImage } from "./ResponsiveImage";
 
 type AspectRatio = "square" | "portrait" | "landscape" | "wide";
 
 type PhotoVariant = "photo" | "illustration";
 
-type VintagePhotoProps = {
-  src: string;
-  alt: string;
+type VintagePhotoProps = ResponsiveImageData & {
   aspect?: AspectRatio;
   variant?: PhotoVariant;
   withBorder?: boolean;
@@ -23,6 +23,10 @@ const aspectClasses: Record<AspectRatio, string> = {
 
 export function VintagePhoto({
   src,
+  srcSet,
+  sizes,
+  width,
+  height,
   alt,
   aspect = "landscape",
   variant = "photo",
@@ -31,11 +35,14 @@ export function VintagePhoto({
   className = "",
 }: VintagePhotoProps) {
   const image = (
-    <img
+    <ResponsiveImage
       src={src}
+      srcSet={srcSet}
+      sizes={sizes}
+      width={width}
+      height={height}
       alt={alt}
-      loading={priority ? "eager" : "lazy"}
-      decoding="async"
+      priority={priority}
       className={`h-full w-full object-cover ${variant === "photo" ? "photo-vintage" : ""}`}
     />
   );

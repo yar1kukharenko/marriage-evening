@@ -1,8 +1,7 @@
 // Весь текст приглашения собран здесь, чтобы менять формулировки
 // и ссылки (карта, RSVP) без правки вёрстки.
 
-const asset = (path: string) =>
-  `${import.meta.env.BASE_URL}${path.replace(/^\//, "")}`;
+import { responsiveImage, type ResponsiveImageData } from "../lib/images";
 
 export type ScheduleItem = {
   time: string;
@@ -13,56 +12,62 @@ export type DressCodeColor = {
   hex: string;
 };
 
-export type DressCodeImage = {
-  src: string;
-  alt: string;
+export type DressCodeImage = ResponsiveImageData & {
   caption?: string;
 };
+
+export type Photo = ResponsiveImageData;
 
 // TODO: заменить на реальную ссылку на отель-клуб «Раздолье» на карте.
 export const mapUrl =
   "https://yandex.ru/maps/?text=Отель-клуб Раздолье Екатеринбург";
 
-export type Photo = {
-  src: string;
-  alt: string;
-};
+const contentImageSizes = "(max-width: 640px) 90vw, 640px";
+const dressCodeImageSizes = "(max-width: 640px) 20vw, 96px";
 
 export const photos = {
-  hero: {
-    src: asset("/illustrations/couple-garden-walk.png"),
-    alt: "Иллюстрация пары на прогулке по садовой аллее",
-  },
+  hero: responsiveImage(
+    "illustrations/couple-garden-walk",
+    "Иллюстрация пары на прогулке по садовой аллее",
+    contentImageSizes,
+  ),
   collage: [
-    {
-      src: asset("/photos/detail-rings.jpg"),
-      alt: "Обручальные кольца на льне",
-    },
-    {
-      src: asset("/photos/nature-garden.jpg"),
-      alt: "Сад в тёплом вечернем свете",
-    },
-    {
-      src: asset("/photos/table-setting.jpg"),
-      alt: "Банкетный стол с натуральным декором",
-    },
+    responsiveImage(
+      "photos/detail-rings",
+      "Обручальные кольца на льне",
+      contentImageSizes,
+    ),
+    responsiveImage(
+      "photos/nature-garden",
+      "Сад в тёплом вечернем свете",
+      contentImageSizes,
+    ),
+    responsiveImage(
+      "photos/table-setting",
+      "Банкетный стол с натуральным декором",
+      contentImageSizes,
+    ),
   ],
-  venue: {
-    src: asset("/photos/venue-countryside.jpg"),
-    alt: "Загородный клуб в окружении сада",
-  },
-  divider: {
-    src: asset("/photos/evening-atmosphere.jpg"),
-    alt: "Тёплый вечерний пейзаж за городом",
-  },
-  schedule: {
-    src: asset("/photos/nature-garden.jpg"),
-    alt: "Сад в тёплом вечернем свете",
-  },
-  wishes: {
-    src: asset("/illustrations/couple-garden-walk.png"),
-    alt: "Иллюстрация пары на прогулке по садовой аллее",
-  },
+  venue: responsiveImage(
+    "photos/venue-countryside",
+    "Загородный клуб в окружении сада",
+    contentImageSizes,
+  ),
+  divider: responsiveImage(
+    "photos/evening-atmosphere",
+    "Тёплый вечерний пейзаж за городом",
+    "100vw",
+  ),
+  schedule: responsiveImage(
+    "photos/nature-garden",
+    "Сад в тёплом вечернем свете",
+    contentImageSizes,
+  ),
+  wishes: responsiveImage(
+    "illustrations/couple-garden-walk",
+    "Иллюстрация пары на прогулке по садовой аллее",
+    contentImageSizes,
+  ),
 } as const;
 
 export const hero = {
@@ -105,12 +110,11 @@ export const transfer = {
 };
 
 const dressCodeImage = (
-  filename: string,
+  baseName: string,
   alt: string,
   caption?: string,
 ): DressCodeImage => ({
-  src: asset(`/examples/${filename}`),
-  alt,
+  ...responsiveImage(`examples/${baseName}`, alt, dressCodeImageSizes),
   ...(caption ? { caption } : {}),
 });
 
@@ -124,7 +128,7 @@ export const dressCode: {
 } = {
   title: "Дресс-код",
   intro:
-    "Будем рады, если в образах вы поддержите тёплую природную палитру вечера:",
+    "Будем рады, если в образах вы поддержите тёплую природную палитру вечера. Просим избегать синий и холодные тона, чёрный (можно в деталях), очень яркие оттенки, принты (кроме классики), глиттер и пайетки.",
   palette: [
     { hex: "#5B3D36" },
     { hex: "#ECD4C4" },
@@ -141,13 +145,13 @@ export const dressCode: {
     items: [
       ...Array.from({ length: 5 }, (_, i) =>
         dressCodeImage(
-          `woman_example_${i + 1}.png`,
+          `woman_example_${i + 1}`,
           `Пример женского образа ${i + 1}`,
         ),
       ),
       ...Array.from({ length: 5 }, (_, i) =>
         dressCodeImage(
-          `man_example_${i + 1}.png`,
+          `man_example_${i + 1}`,
           `Пример мужского образа ${i + 1}`,
         ),
       ),
@@ -156,25 +160,21 @@ export const dressCode: {
   textures: {
     label: "Текстуры",
     items: Array.from({ length: 4 }, (_, i) =>
-      dressCodeImage(`texture_${i + 1}.png`, `Пример текстуры ${i + 1}`),
+      dressCodeImage(`texture_${i + 1}`, `Пример текстуры ${i + 1}`),
     ),
   },
   stopList: {
     label: "Стоп-лист",
     items: [
       dressCodeImage(
-        "stop_1.png",
+        "stop_1",
         "Синий и холодные тона",
         "синий и холодные тона",
       ),
-      dressCodeImage("stop_2.png", "Чёрный", "чёрный (можно в деталях)"),
-      dressCodeImage(
-        "stop_3.png",
-        "Очень яркие оттенки",
-        "очень яркие оттенки",
-      ),
-      dressCodeImage("stop_4.png", "Принты", "принты (кроме классики)"),
-      dressCodeImage("stop_5.png", "Глиттер и пайетки", "глиттер и пайетки"),
+      dressCodeImage("stop_2", "Чёрный", "чёрный (можно в деталях)"),
+      dressCodeImage("stop_3", "Очень яркие оттенки", "очень яркие оттенки"),
+      dressCodeImage("stop_4", "Принты", "принты (кроме классики)"),
+      dressCodeImage("stop_5", "Глиттер и пайетки", "глиттер и пайетки"),
     ],
   },
 };
@@ -184,18 +184,12 @@ export const wishes = {
   paragraphs: [
     "Пожалуйста, не дарите цветы.",
     "Мы будем благодарны, если вместо букетов вы сохраните это внимание для тёплых слов.",
-    "Если вы захотите сделать подарок, будем рады вкладу в наши семейные планы.",
+    "Если вы захотите сделать подарок, будем рады вкладу в наши семейные планы в денежном эквиваленте.",
   ],
 };
 
 export const rsvp = {
-  title: "Подтвердите присутствие",
-  deadline: "30 августа",
-  checklist: [
-    "будете ли вы на праздничном вечере;",
-    "поедете ли вы на автобусе;",
-    "или доберётесь самостоятельно.",
-  ],
+  title: "Подтвердите присутствие до 30 августа",
   buttonLabel: "Подтвердить присутствие",
   form: {
     title: "Подтверждение присутствия",

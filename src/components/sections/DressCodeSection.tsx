@@ -1,14 +1,10 @@
 import { dressCode, type DressCodeImage } from "../../data/content";
 import { Section } from "../layout/Section";
+import { ResponsiveImage } from "../ui/ResponsiveImage";
 
 const paletteRows = [
   dressCode.palette.slice(0, 5),
   dressCode.palette.slice(5, 9),
-];
-
-const stopListRows = [
-  dressCode.stopList.items.slice(0, 3),
-  dressCode.stopList.items.slice(3),
 ];
 
 type ImageGridProps = {
@@ -39,16 +35,11 @@ function ImageGrid({
             key={item.src}
             className={`flex w-full flex-col gap-1 ${itemClassName}`}
           >
-            <img
-              src={item.src}
-              alt={item.alt}
-              loading="lazy"
-              decoding="async"
+            <ResponsiveImage
+              {...item}
               className="photo-vintage h-auto w-full rounded-sm object-contain"
             />
-            {item.caption && (
-              <p className={captionClassName}>{item.caption}</p>
-            )}
+            {item.caption && <p className={captionClassName}>{item.caption}</p>}
           </div>
         ))}
       </div>
@@ -62,7 +53,7 @@ export function DressCodeSection() {
       <p className="font-sans text-xs tracking-[0.3em] text-wine/80 uppercase">
         {dressCode.title}
       </p>
-      <p className="mt-6 font-serif text-base text-chocolate/90">
+      <p className="mt-6 font-serif text-base leading-snug text-chocolate/90">
         {dressCode.intro}
       </p>
 
@@ -103,31 +94,16 @@ export function DressCodeSection() {
         <p className="font-sans text-xs tracking-[0.3em] text-wine/80 uppercase">
           {dressCode.stopList.label}
         </p>
-        <div className="mt-6 space-y-4">
-          {stopListRows.map((row, rowIndex) => (
+        <div className="mt-4 flex flex-wrap items-start justify-center gap-1.5 sm:flex-nowrap sm:gap-4">
+          {dressCode.stopList.items.map((item) => (
             <div
-              key={rowIndex}
-              className="flex justify-center gap-6 sm:gap-8"
+              key={item.src}
+              className="flex max-w-20 flex-1 basis-0 flex-col items-center gap-0.5 sm:max-w-none"
             >
-              {row.map((item) => (
-                <div
-                  key={item.src}
-                  className="flex max-w-28 flex-col items-center gap-2 sm:max-w-36"
-                >
-                  <img
-                    src={item.src}
-                    alt={item.alt}
-                    loading="lazy"
-                    decoding="async"
-                    className="photo-vintage h-auto w-full rounded-full object-contain"
-                  />
-                  {item.caption && (
-                    <p className="font-serif text-sm leading-snug text-chocolate/90 italic sm:text-base">
-                      {item.caption}
-                    </p>
-                  )}
-                </div>
-              ))}
+              <ResponsiveImage
+                {...item}
+                className="photo-vintage h-auto w-full rounded-full object-contain"
+              />
             </div>
           ))}
         </div>
