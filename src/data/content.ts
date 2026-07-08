@@ -25,8 +25,8 @@ export type Photo = {
 
 export const photos = {
   hero: {
-    src: asset('/photos/couple-hero.jpg'),
-    alt: 'Пара на природе в тёплом вечернем свете',
+    src: asset('/illustrations/couple-garden-walk.png'),
+    alt: 'Иллюстрация пары на прогулке по садовой аллее',
   },
   collage: [
     { src: asset('/photos/detail-rings.jpg'), alt: 'Обручальные кольца на льне' },
