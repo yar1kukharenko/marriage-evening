@@ -46,7 +46,7 @@ export function Section({
       id={id}
       ref={ref}
       className={`fade-in relative flex w-full items-center justify-center px-6 ${
-        compact ? "min-h-0 py-25" : "min-h-[90vh] py-16"
+        compact ? "min-h-0 py-14" : "min-h-[90vh] py-16"
       } ${isVisible ? "is-visible" : ""} ${className}`}
     >
       {decor}

@@ -92,7 +92,7 @@ export const schedule: { title: string; items: ScheduleItem[] } = {
   items: [
     { time: "16:30", label: "встреча гостей" },
     { time: "17:00", label: "начало праздничного вечера" },
-    { time: "17:30", label: "поздравления и подарки" },
+    { time: "17:30", label: "поздравления" },
     { time: "18:00", label: "банкет" },
     { time: "22:30", label: "торт" },
     { time: "23:00", label: "завершение вечера" },
@@ -124,11 +124,11 @@ export const dressCode: {
   palette: DressCodeColor[];
   references: { label: string; items: DressCodeImage[] };
   textures: { label: string; items: DressCodeImage[] };
-  stopList: { label: string; items: DressCodeImage[] };
+  stopList: { label: string; items: DressCodeImage[]; note: string };
 } = {
   title: "Дресс-код",
   intro:
-    "Будем рады, если в образах вы поддержите тёплую природную палитру вечера. Просим избегать синий и холодные тона, чёрный (можно в деталях), очень яркие оттенки, принты (кроме классики), глиттер и пайетки.",
+    "Будем рады, если в образах вы поддержите тёплую природную палитру вечера.",
   palette: [
     { hex: "#5B3D36" },
     { hex: "#ECD4C4" },
@@ -176,6 +176,8 @@ export const dressCode: {
       dressCodeImage("stop_4", "Принты", "принты (кроме классики)"),
       dressCodeImage("stop_5", "Глиттер и пайетки", "глиттер и пайетки"),
     ],
+    note:
+      "Просим избегать синий и холодные тона, чёрный (можно в деталях), очень яркие оттенки, принты (кроме классики), глиттер и пайетки.",
   },
 };
 

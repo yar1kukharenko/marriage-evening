@@ -107,6 +107,9 @@ export function DressCodeSection() {
             </div>
           ))}
         </div>
+        <p className="mt-4 font-serif text-xs leading-snug text-chocolate/90 italic">
+          {dressCode.stopList.note}
+        </p>
       </div>
     </Section>
   );
