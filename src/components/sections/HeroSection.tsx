@@ -8,7 +8,7 @@ export function HeroSection() {
     <Section id="hero" decor={<HeroVines />} className="text-center">
       {/* <Arch className="mx-auto mb-1 h-24 w-72 sm:h-28 sm:w-80" /> */}
 
-      <div className="mt-2 font-serif text-sm leading-snug text-chocolate/80">
+      <div className="mx-auto mt-2 max-w-[14rem] font-serif text-sm leading-snug text-chocolate/80 sm:max-w-xs">
         {hero.greeting.map((line) => (
           <p key={line}>{line}</p>
         ))}
