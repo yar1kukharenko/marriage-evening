@@ -2,7 +2,7 @@
 // и ссылки (карта, RSVP) без правки вёрстки.
 
 const asset = (path: string) =>
-  `${import.meta.env.BASE_URL}${path.replace(/^\//, '')}`;
+  `${import.meta.env.BASE_URL}${path.replace(/^\//, "")}`;
 
 export type ScheduleItem = {
   time: string;
@@ -10,8 +10,13 @@ export type ScheduleItem = {
 };
 
 export type DressCodeColor = {
-  name: string;
   hex: string;
+};
+
+export type DressCodeImage = {
+  src: string;
+  alt: string;
+  caption?: string;
 };
 
 // TODO: заменить на реальную ссылку на отель-клуб «Раздолье» на карте.
@@ -25,60 +30,56 @@ export type Photo = {
 
 export const photos = {
   hero: {
-    src: asset('/illustrations/couple-garden-walk.png'),
-    alt: 'Иллюстрация пары на прогулке по садовой аллее',
+    src: asset("/illustrations/couple-garden-walk.png"),
+    alt: "Иллюстрация пары на прогулке по садовой аллее",
   },
   collage: [
-    { src: asset('/photos/detail-rings.jpg'), alt: 'Обручальные кольца на льне' },
-    { src: asset('/photos/nature-garden.jpg'), alt: 'Сад в тёплом вечернем свете' },
     {
-      src: asset('/photos/table-setting.jpg'),
-      alt: 'Банкетный стол с натуральным декором',
+      src: asset("/photos/detail-rings.jpg"),
+      alt: "Обручальные кольца на льне",
+    },
+    {
+      src: asset("/photos/nature-garden.jpg"),
+      alt: "Сад в тёплом вечернем свете",
+    },
+    {
+      src: asset("/photos/table-setting.jpg"),
+      alt: "Банкетный стол с натуральным декором",
     },
   ],
   venue: {
-    src: asset('/photos/venue-countryside.jpg'),
-    alt: 'Загородный клуб в окружении сада',
+    src: asset("/photos/venue-countryside.jpg"),
+    alt: "Загородный клуб в окружении сада",
   },
   divider: {
-    src: asset('/photos/evening-atmosphere.jpg'),
-    alt: 'Тёплый вечерний пейзаж за городом',
+    src: asset("/photos/evening-atmosphere.jpg"),
+    alt: "Тёплый вечерний пейзаж за городом",
   },
   schedule: {
-    src: asset('/photos/nature-garden.jpg'),
-    alt: 'Сад в тёплом вечернем свете',
+    src: asset("/photos/nature-garden.jpg"),
+    alt: "Сад в тёплом вечернем свете",
   },
-  dressCode: [
-    {
-      src: asset('/illustrations/outfit-warm-palette.png'),
-      alt: 'Иллюстрация тёплой природной палитры',
-    },
-    {
-      src: asset('/illustrations/table-natural-decor.png'),
-      alt: 'Иллюстрация банкетного стола с натуральным декором',
-    },
-  ],
   wishes: {
-    src: asset('/illustrations/couple-garden-walk.png'),
-    alt: 'Иллюстрация пары на прогулке по садовой аллее',
+    src: asset("/illustrations/couple-garden-walk.png"),
+    alt: "Иллюстрация пары на прогулке по садовой аллее",
   },
 } as const;
 
 export const hero = {
   eyebrow: "Праздничный вечер",
-  subtitle: "в честь нашего бракосочетания",
+  subtitle: "в честь нашего бракосочетания",
   names: ["Ярослав", "Анастасия"],
   date: "19 сентября 2026",
   meeting: "Встреча гостей в 16:30",
-  greeting: ["Приглашаем вас на праздник в честь нашего бракосочетания"],
+  greeting: ["Приглашаем вас на праздник в честь нашего бракосочетания"],
 };
 
 export const venue = {
   title: "Место проведения",
   name: "Отель-клуб «Раздолье»",
   description:
-    "Праздничный вечер пройдёт за городом, в спокойной и уютной атмосфере.",
-  mapButtonLabel: "Открыть на карте",
+    "Праздничный вечер пройдёт за городом, в спокойной и уютной атмосфере.",
+  mapButtonLabel: "Открыть на карте",
 };
 
 export const schedule: { title: string; items: ScheduleItem[] } = {
@@ -96,41 +97,94 @@ export const schedule: { title: string; items: ScheduleItem[] } = {
 export const transfer = {
   title: "Трансфер",
   description:
-    "Для гостей будет организован автобус из Екатеринбурга и обратно.",
+    "Для гостей будет организован автобус из Екатеринбурга и обратно.",
   departureTime: "15:00",
   meetingPoint: "гаражный комплекс «Парков»",
   address: "г. Екатеринбург, ул. Восточная, 51",
-  note: "Пожалуйста, сообщите при подтверждении, поедете ли вы на автобусе или доберётесь самостоятельно.",
+  note: "Пожалуйста, сообщите при подтверждении, поедете ли вы на автобусе или доберётесь самостоятельно.",
 };
+
+const dressCodeImage = (
+  filename: string,
+  alt: string,
+  caption?: string,
+): DressCodeImage => ({
+  src: asset(`/examples/${filename}`),
+  alt,
+  ...(caption ? { caption } : {}),
+});
 
 export const dressCode: {
   title: string;
   intro: string;
   palette: DressCodeColor[];
-  avoidNote: string;
+  references: { label: string; items: DressCodeImage[] };
+  textures: { label: string; items: DressCodeImage[] };
+  stopList: { label: string; items: DressCodeImage[] };
 } = {
-  title: "Дресс-код по желанию",
+  title: "Дресс-код",
   intro:
-    "Будем рады, если в образах вы поддержите тёплую природную палитру вечера:",
+    "Будем рады, если в образах вы поддержите тёплую природную палитру вечера:",
   palette: [
-    { name: "бежевый", hex: "#D9CBB4" },
-    { name: "шоколадный", hex: "#5B3A29" },
-    { name: "шалфейный", hex: "#9CAA8C" },
-    { name: "оливковый", hex: "#7C7B4A" },
-    { name: "пыльно-розовый", hex: "#D8B4AC" },
-    { name: "терракотовый", hex: "#B5654B" },
-    { name: "винный", hex: "#5C3A3A" },
+    { hex: "#5B3D36" },
+    { hex: "#ECD4C4" },
+    { hex: "#A95E52" },
+    { hex: "#770002" },
+    { hex: "#6A6641" },
+    { hex: "#B6B0AF" },
+    { hex: "#BFC186" },
+    { hex: "#E7B3B2" },
+    { hex: "#C6916F" },
   ],
-  avoidNote:
-    "Просим по возможности избегать холодных синих оттенков, полностью чёрных образов, слишком ярких цветов, активных принтов, глиттера и пайеток.",
+  references: {
+    label: "Референсы",
+    items: [
+      ...Array.from({ length: 5 }, (_, i) =>
+        dressCodeImage(
+          `woman_example_${i + 1}.png`,
+          `Пример женского образа ${i + 1}`,
+        ),
+      ),
+      ...Array.from({ length: 5 }, (_, i) =>
+        dressCodeImage(
+          `man_example_${i + 1}.png`,
+          `Пример мужского образа ${i + 1}`,
+        ),
+      ),
+    ],
+  },
+  textures: {
+    label: "Текстуры",
+    items: Array.from({ length: 4 }, (_, i) =>
+      dressCodeImage(`texture_${i + 1}.png`, `Пример текстуры ${i + 1}`),
+    ),
+  },
+  stopList: {
+    label: "Стоп-лист",
+    items: [
+      dressCodeImage(
+        "stop_1.png",
+        "Синий и холодные тона",
+        "синий и холодные тона",
+      ),
+      dressCodeImage("stop_2.png", "Чёрный", "чёрный (можно в деталях)"),
+      dressCodeImage(
+        "stop_3.png",
+        "Очень яркие оттенки",
+        "очень яркие оттенки",
+      ),
+      dressCodeImage("stop_4.png", "Принты", "принты (кроме классики)"),
+      dressCodeImage("stop_5.png", "Глиттер и пайетки", "глиттер и пайетки"),
+    ],
+  },
 };
 
 export const wishes = {
   title: "Пожелания",
   paragraphs: [
-    "Пожалуйста, не дарите цветы.",
-    "Мы будем благодарны, если вместо букетов вы сохраните это внимание для тёплых слов.",
-    "Если вы захотите сделать подарок, будем рады вкладу в наши семейные планы.",
+    "Пожалуйста, не дарите цветы.",
+    "Мы будем благодарны, если вместо букетов вы сохраните это внимание для тёплых слов.",
+    "Если вы захотите сделать подарок, будем рады вкладу в наши семейные планы.",
   ],
 };
 
@@ -138,8 +192,8 @@ export const rsvp = {
   title: "Подтвердите присутствие",
   deadline: "30 августа",
   checklist: [
-    "будете ли вы на праздничном вечере;",
-    "поедете ли вы на автобусе;",
+    "будете ли вы на праздничном вечере;",
+    "поедете ли вы на автобусе;",
     "или доберётесь самостоятельно.",
   ],
   buttonLabel: "Подтвердить присутствие",
@@ -149,12 +203,12 @@ export const rsvp = {
     submittingLabel: "Отправляем…",
     successTitle: "Спасибо!",
     successMessageAttending:
-      "Мы получили ваш ответ и будем рады встретиться с вами на праздничном вечере.",
+      "Мы получили ваш ответ и будем рады встретиться с вами на праздничном вечере.",
     successMessageDeclined:
-      "Мы получили ваш ответ. Нам очень жаль, что вы не сможете быть с нами, но мы ценим, что вы сообщили.",
+      "Мы получили ваш ответ. Нам очень жаль, что вы не сможете быть с нами, но мы ценим, что вы сообщили.",
     fields: {
       fullName: "Имя и фамилия",
-      attending: "Будете ли вы на праздничном вечере?",
+      attending: "Будете ли вы на праздничном вечере?",
       transfer: "Как планируете добраться?",
       phone: "Телефон для связи",
       comment: "Комментарий",
@@ -169,7 +223,7 @@ export const rsvp = {
       { value: "no" as const, label: "К сожалению, не смогу прийти" },
     ],
     transferOptions: [
-      { value: "bus" as const, label: "Поеду на автобусе из Екатеринбурга" },
+      { value: "bus" as const, label: "Поеду на автобусе из Екатеринбурга" },
       { value: "self" as const, label: "Доберусь самостоятельно" },
     ],
     errors: {

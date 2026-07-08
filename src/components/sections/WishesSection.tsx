@@ -17,7 +17,7 @@ export function WishesSection() {
         <p className="font-sans text-xs tracking-[0.3em] text-wine/80 uppercase">
           {wishes.title}
         </p>
-        <div className="mt-6 space-y-4 font-serif text-base text-chocolate/90">
+        <div className="mt-6 space-y-3 font-serif text-lg leading-snug text-chocolate/90 sm:text-xl">
           {wishes.paragraphs.map((line) => (
             <p key={line}>{line}</p>
           ))}

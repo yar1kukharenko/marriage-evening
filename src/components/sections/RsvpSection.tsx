@@ -13,7 +13,7 @@ export function RsvpSection() {
       <Section id="rsvp" compact className="text-center">
         <p className="font-serif text-3xl text-wine">{rsvp.title}</p>
         <p className="mt-6 font-serif text-base text-chocolate/90">
-          Пожалуйста, подтвердите, сможете ли вы быть с нами, до{" "}
+          Пожалуйста, подтвердите, сможете&nbsp;ли вы&nbsp;быть с&nbsp;нами, до{" "}
           <span className="font-medium text-wine">{rsvp.deadline}</span>.
         </p>
 
