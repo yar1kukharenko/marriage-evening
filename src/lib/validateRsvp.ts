@@ -17,13 +17,7 @@ const COMMENT_MAX = 500;
 const fullNamePattern = /^[\p{L}\s'-]+$/u;
 const phonePattern = /^[\d\s+()-]+$/;
 
-export function validateRsvpForm(data: {
-  fullName: string;
-  attendingChoice: "yes" | "no" | "";
-  transferChoice: TransferOption | "";
-  phone: string;
-  comment: string;
-}): RsvpFieldErrors {
+export function validateRsvpForm(data: RsvpFormInput): RsvpFieldErrors {
   const errors: RsvpFieldErrors = {};
   const fullName = data.fullName.trim();
 
@@ -68,4 +62,16 @@ export function validateRsvpForm(data: {
 
 export function hasFieldErrors(errors: RsvpFieldErrors): boolean {
   return Object.keys(errors).length > 0;
+}
+
+export type RsvpFormInput = {
+  fullName: string;
+  attendingChoice: "yes" | "no" | "";
+  transferChoice: TransferOption | "";
+  phone: string;
+  comment: string;
+};
+
+export function isRsvpFormValid(data: RsvpFormInput): boolean {
+  return !hasFieldErrors(validateRsvpForm(data));
 }

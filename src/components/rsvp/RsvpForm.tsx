@@ -3,10 +3,12 @@ import { rsvp } from "../../data/content";
 import { RsvpSubmitError, submitRsvp } from "../../lib/rsvp";
 import {
   hasFieldErrors,
+  isRsvpFormValid,
   validateRsvpForm,
   type RsvpFieldErrors,
 } from "../../lib/validateRsvp";
 import type { RsvpFormData, TransferOption } from "../../types/rsvp";
+import { buttonClassName } from "../ui/Button";
 
 type RsvpFormProps = {
   onSuccess: () => void;
@@ -27,8 +29,15 @@ const initialState: FormState = {
   transferChoice: "",
 };
 
+const fieldErrorKeyMap: Partial<
+  Record<keyof FormState, keyof RsvpFieldErrors>
+> = {
+  attendingChoice: "attending",
+  transferChoice: "transfer",
+};
+
 const fieldClassName =
-  "w-full border bg-cream px-4 py-3 font-sans text-sm text-chocolate outline-none transition-colors placeholder:text-chocolate/40 focus:border-wine/60";
+  "w-full border bg-cream px-4 py-3 font-sans text-base text-chocolate outline-none transition-colors placeholder:text-chocolate/40 focus:border-wine/60";
 
 const labelClassName =
   "block font-sans text-xs tracking-[0.15em] text-wine/80 uppercase";
@@ -46,6 +55,7 @@ export function RsvpForm({ onSuccess }: RsvpFormProps) {
   const [submittedAttending, setSubmittedAttending] = useState(false);
 
   const isAttending = form.attendingChoice === "yes";
+  const canSubmit = isRsvpFormValid(form);
 
   const updateField = <K extends keyof FormState>(
     key: K,
@@ -54,7 +64,9 @@ export function RsvpForm({ onSuccess }: RsvpFormProps) {
     setForm((current) => ({ ...current, [key]: value }));
     setFieldErrors((current) => {
       const next = { ...current };
-      if (key in next) delete next[key as keyof RsvpFieldErrors];
+      const errorKey =
+        fieldErrorKeyMap[key] ?? (key as keyof RsvpFieldErrors);
+      if (errorKey in next) delete next[errorKey];
       return next;
     });
     setSubmitError(null);
@@ -254,8 +266,8 @@ export function RsvpForm({ onSuccess }: RsvpFormProps) {
 
       <button
         type="submit"
-        disabled={isSubmitting}
-        className="w-full border border-wine/60 px-8 py-3 font-sans text-xs tracking-[0.25em] text-wine uppercase transition-colors duration-300 hover:bg-wine hover:text-cream disabled:cursor-not-allowed disabled:opacity-60"
+        disabled={isSubmitting || !canSubmit}
+        className={`w-full ${buttonClassName}`}
       >
         {isSubmitting ? rsvp.form.submittingLabel : rsvp.form.submitLabel}
       </button>

@@ -82,7 +82,7 @@ export function RsvpModal({ isOpen, onClose, title, children }: RsvpModalProps) 
 
           <div
             ref={contentRef}
-            className="mt-6 min-h-0 flex-1 overflow-y-auto overscroll-y-contain [-webkit-overflow-scrolling:touch]"
+            className="mt-6 min-h-0 flex-1 overflow-x-hidden overflow-y-auto overscroll-y-contain [-webkit-overflow-scrolling:touch]"
           >
             {children}
           </div>

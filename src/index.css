@@ -28,8 +28,10 @@
     box-sizing: border-box;
   }
 
-  html {
-    scroll-behavior: smooth;
+  @media (hover: hover) and (pointer: fine) {
+    html {
+      scroll-behavior: smooth;
+    }
   }
 
   body {
@@ -40,6 +42,13 @@
     -webkit-font-smoothing: antialiased;
     background-image: url("/textures/paper-noise.svg");
     background-repeat: repeat;
+  }
+
+  /* iOS (Safari, Chrome и др.) зумит страницу при фокусе, если шрифт в поле < 16px */
+  input,
+  textarea,
+  select {
+    font-size: 16px;
   }
 }
 
