@@ -214,6 +214,9 @@ export const rsvp = {
       phone: "+7 (999) 000-00-00",
       comment: "Аллергии, пожелания или уточнения",
     },
+    hints: {
+      requiredLegend: "обязательное поле",
+    },
     attendingOptions: [
       { value: "yes" as const, label: "Да, буду на праздничном вечере" },
       { value: "no" as const, label: "К сожалению, не смогу прийти" },

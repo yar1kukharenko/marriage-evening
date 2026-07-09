@@ -74,7 +74,7 @@ export function RsvpModal({ isOpen, onClose, title, children }: RsvpModalProps) 
               type="button"
               onClick={onClose}
               aria-label="Закрыть"
-              className="mt-1 font-sans text-xs tracking-[0.2em] text-wine/70 uppercase transition-colors hover:text-wine"
+              className="mt-1 font-sans text-xs tracking-[0.2em] text-wine/70 uppercase transition-[color,transform] duration-150 select-none touch-manipulation hover:text-wine active:scale-90 active:text-wine"
             >
               ✕
             </button>
@@ -82,7 +82,7 @@ export function RsvpModal({ isOpen, onClose, title, children }: RsvpModalProps) 
 
           <div
             ref={contentRef}
-            className="mt-6 min-h-0 flex-1 overflow-x-hidden overflow-y-auto overscroll-y-contain [-webkit-overflow-scrolling:touch]"
+            className="mt-3 min-h-0 flex-1 overflow-x-hidden overflow-y-auto overscroll-y-contain [-webkit-overflow-scrolling:touch]"
           >
             {children}
           </div>

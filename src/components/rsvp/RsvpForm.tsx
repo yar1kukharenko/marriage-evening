@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from "react";
+import { useState, type FormEvent, type ReactNode } from "react";
 import { rsvp } from "../../data/content";
 import { RsvpSubmitError, submitRsvp } from "../../lib/rsvp";
 import {
@@ -41,6 +41,44 @@ const fieldClassName =
 
 const labelClassName =
   "block font-sans text-xs tracking-[0.15em] text-wine/80 uppercase";
+
+const requiredMarkClassName = "ml-0.5 font-normal text-wine/65";
+
+type FormFieldLabelProps = {
+  children: ReactNode;
+  required?: boolean;
+  htmlFor?: string;
+  as?: "label" | "legend";
+};
+
+function FormFieldLabel({
+  children,
+  required = false,
+  htmlFor,
+  as = "label",
+}: FormFieldLabelProps) {
+  const content = (
+    <>
+      {children}
+      {required && (
+        <span className={requiredMarkClassName} aria-hidden>
+          *
+        </span>
+      )}
+      {required && <span className="sr-only"> (обязательно)</span>}
+    </>
+  );
+
+  if (as === "legend") {
+    return <legend className={labelClassName}>{content}</legend>;
+  }
+
+  return (
+    <label htmlFor={htmlFor} className={labelClassName}>
+      {content}
+    </label>
+  );
+}
 
 function fieldBorderClass(hasError: boolean) {
   return `${fieldClassName} ${hasError ? "border-wine" : "border-wine/25"}`;
@@ -124,14 +162,19 @@ export function RsvpForm({ onSuccess }: RsvpFormProps) {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6 pb-1 text-left">
+      <p className="font-serif text-[0.6875rem] tracking-[0.02em] text-chocolate/40">
+        <span className="text-wine/65">*</span> {rsvp.form.hints.requiredLegend}
+      </p>
+
       <div className="space-y-2">
-        <label htmlFor="rsvp-fullName" className={labelClassName}>
+        <FormFieldLabel htmlFor="rsvp-fullName" required>
           {rsvp.form.fields.fullName}
-        </label>
+        </FormFieldLabel>
         <input
           id="rsvp-fullName"
           type="text"
           autoComplete="name"
+          aria-required="true"
           maxLength={100}
           value={form.fullName}
           onChange={(event) => updateField("fullName", event.target.value)}
@@ -150,7 +193,9 @@ export function RsvpForm({ onSuccess }: RsvpFormProps) {
       </div>
 
       <fieldset className="space-y-3">
-        <legend className={labelClassName}>{rsvp.form.fields.attending}</legend>
+        <FormFieldLabel as="legend" required>
+          {rsvp.form.fields.attending}
+        </FormFieldLabel>
         <div className="space-y-2">
           {rsvp.form.attendingOptions.map((option) => (
             <label
@@ -183,7 +228,9 @@ export function RsvpForm({ onSuccess }: RsvpFormProps) {
 
       {isAttending && (
         <fieldset className="space-y-3">
-          <legend className={labelClassName}>{rsvp.form.fields.transfer}</legend>
+          <FormFieldLabel as="legend" required>
+            {rsvp.form.fields.transfer}
+          </FormFieldLabel>
           <div className="space-y-2">
             {rsvp.form.transferOptions.map((option) => (
               <label
@@ -212,9 +259,9 @@ export function RsvpForm({ onSuccess }: RsvpFormProps) {
       )}
 
       <div className="space-y-2">
-        <label htmlFor="rsvp-phone" className={labelClassName}>
+        <FormFieldLabel htmlFor="rsvp-phone">
           {rsvp.form.fields.phone}
-        </label>
+        </FormFieldLabel>
         <input
           id="rsvp-phone"
           type="tel"
@@ -235,9 +282,9 @@ export function RsvpForm({ onSuccess }: RsvpFormProps) {
       </div>
 
       <div className="space-y-2">
-        <label htmlFor="rsvp-comment" className={labelClassName}>
+        <FormFieldLabel htmlFor="rsvp-comment">
           {rsvp.form.fields.comment}
-        </label>
+        </FormFieldLabel>
         <textarea
           id="rsvp-comment"
           rows={3}
